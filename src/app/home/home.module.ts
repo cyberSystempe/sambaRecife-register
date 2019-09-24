@@ -5,12 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { HttpClientModule } from '@angular/common/http';
+import { BrMaskerModule } from 'br-mask';
 
 @NgModule({
   imports: [
+    BrMaskerModule,
     CommonModule,
     FormsModule,
     IonicModule,
+    HttpClientModule,
     RouterModule.forChild([
       {
         path: '',
