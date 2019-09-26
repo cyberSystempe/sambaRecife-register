@@ -1,5 +1,5 @@
 ion-content {
-    --background: url(../../assets/sambarecife1.jpeg) no-repeat center/cover ;
+    --background: url(../../assets/fundo.png) no-repeat center/cover ;
   }
 
   .input{
@@ -9,3 +9,13 @@ ion-content {
   .margin{
       margin-top: 5%
   }
+
+.img-samba{
+  height: 20em;
+  margin-left: 18%;
+}
+.img-letra{
+  height: 16em;
+  margin-left: 20%;
+  position: absolute;
+}

@@ -1,6 +1,9 @@
 
 
 <ion-content>
+    <div>
+        <img class="img-letra" src="../../assets/letra.png" />
+      </div>
   <div *ngIf="!exibirConfig" class="ion-padding" style="margin-top: 55%" >
      
     <ion-input class="input " [(ngModel)]="model.nome"placeholder="Digite seu nome" ></ion-input>
@@ -18,5 +21,8 @@
     <div class="ion-padding">
         <ion-button expand="block" type="submit" (click)="salvarConfig()" class="ion-no-margin">Salvar</ion-button>
       </div>
+  </div>
+  <div>
+    <img class='img-samba' src="../../assets/logoSamba.png" />
   </div>
 </ion-content>
