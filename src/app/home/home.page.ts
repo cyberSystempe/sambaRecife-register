@@ -16,7 +16,7 @@ import { Network } from '@ionic-native/network/ngx';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  model: Usuario = new Usuario();
+  model: Usuario = new Usuario('','');
   config: Configuracao = new Configuracao();
   exibirConfig = true
   
@@ -34,6 +34,8 @@ export class HomePage {
               public loadingController: LoadingController,
               public storage: Storage,private network: Network,
                public toast: ToastController ) {
+        
+    this.enviar();
     //this.storage.set(this.LISTA_USUARIO, new Array<Usuario>());
     this.storage.get(this.PATH).then(data => { 
       if(data){
@@ -47,10 +49,15 @@ export class HomePage {
    
   }
 
+  
+
   salvar(){
-    if(this.model.telefone.length >= 14){
+    if(this.model.telefone && this.model.telefone.length >= 14){
       if(this.model.nome && this.model.telefone){
-        this.storageSave(this.model);
+        this.storageSave(new Usuario(this.model.nome , this.model.telefone))
+        setTimeout( () => {
+          this.limparCampo()
+          }, 500)
       }else{
         this.presentToast('Campos obrigatorios')
       }
@@ -60,8 +67,9 @@ export class HomePage {
     }
   }
   salvarConfig(){
-    if(this.config.codigo && this.config.path){
-      this.storage.set(this.PATH, this.config.path);
+    if(this.config.codigo){
+      this.storage.set(this.PATH, 'http://sambarecife-env.3fzjmnwhip.us-east-2.elasticbeanstalk.com/usuario/');
+      this.config.path = 'http://sambarecife-env.3fzjmnwhip.us-east-2.elasticbeanstalk.com/usuario/'
       this.storage.set(this.CODIGO, this.config.codigo);
       this.exibirConfig = false
     }
@@ -74,6 +82,9 @@ export class HomePage {
   }
 
   enviar(){
+    setTimeout( () => {
+      this.enviar()
+      }, 30000)
     this.storage.get(this.LISTA_USUARIO).then(data=> { 
       if(data && data.length > 0 ){
         let objecto : ObjectDTO = new ObjectDTO
@@ -137,10 +148,6 @@ export class HomePage {
        let listaUsuario = data
        listaUsuario.push(usuario)
        this.storage.set(this.LISTA_USUARIO, listaUsuario)
-       setTimeout( () => {
-        this.limparCampo()
-        }, 500)
-       this.presentToast('Salvo com sucesso.')
       }else{
         let listaUsuario = new Array<Usuario>()
         listaUsuario.push(usuario)
@@ -148,6 +155,7 @@ export class HomePage {
 
       }
     })
+    this.presentToast('Salvo com sucesso.')
   }
 
   public limparCampo(){

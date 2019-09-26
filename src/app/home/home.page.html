@@ -7,15 +7,14 @@
     <ion-input  class="input margin"  [brmasker]="{phone: true}" [(ngModel)]="model.telefone" placeholder="Digite seu telefone"></ion-input>
     <div class="ion-padding">
         <ion-button expand="block" type="submit" (click)="salvar()" class="ion-no-margin">Salvar</ion-button>
-        <ion-button expand="block" type="submit" (click)="listar()" class="ion-no-margin">listar</ion-button>
-        <ion-button expand="block" type="submit" (click)="enviar()" class="ion-no-margin">enviar</ion-button>
+        <!-- <ion-button expand="block" type="submit" (click)="listar()" class="ion-no-margin">listar</ion-button>
+        <ion-button expand="block" type="submit" (click)="enviar()" class="ion-no-margin">enviar</ion-button> -->
 
       </div>
   </div>
 
   <div *ngIf="exibirConfig" class="ion-padding" style="margin-top: 55%">
     <ion-input class="input " [(ngModel)]="config.codigo"placeholder="Codigo" ></ion-input>
-    <ion-input  class="input margin" [(ngModel)]="config.path" placeholder="URL Acesso"></ion-input>
     <div class="ion-padding">
         <ion-button expand="block" type="submit" (click)="salvarConfig()" class="ion-no-margin">Salvar</ion-button>
       </div>
